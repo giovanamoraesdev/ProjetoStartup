@@ -82,6 +82,13 @@ main{
   margin-top: 22px; 
 }
 
+.task-item{
+    background-color: #dfd9e2;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+}
+
 .task-card{
   
 }
