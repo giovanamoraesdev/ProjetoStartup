@@ -6,7 +6,7 @@ addTaskButton.addEventListener("click", addTask)
 function addTask() {
     const task = prompt("Digite uma nova tarefa:")
     
-    if(task !== null) {
+    if(task !== null && task.trim() !== "") {
       const newTask = document.createElement("p");
 
     newTask.classList.add("task-item");
