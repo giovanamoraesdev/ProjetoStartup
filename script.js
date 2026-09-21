@@ -17,3 +17,9 @@ function addTask() {
   
     }
 }
+
+const button = document.querySelector(".primary-button");
+
+button.addEventListener("click", function(){
+  console.log("Botão clicado!")
+});
