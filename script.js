@@ -1,25 +1,29 @@
-const addTaskButton = document.querySelector(".primary-button")
-const taskCard = document.querySelector(".task-card");
+const cards = document.querySelectorAll(".card");
 
-addTaskButton.addEventListener("click", addTask)
+for (let i = 0; i < cards.length; i++) {
 
-function addTask() {
-    const task = prompt("Digite uma nova tarefa:")
-    
-    if(task !== null && task.trim() !== "") {
-      const newTask = document.createElement("p");
+    const button = cards[i].querySelector(".card-button");
+    const input = cards[i].querySelector("input");
 
-    newTask.classList.add("task-item");
-    
-    newTask.textContent = task;
-
-    taskCard.appendChild(newTask);
-  
-    }
+    button.addEventListener("click", function () {
+        addItem(input, cards[i]);
+    });
 }
 
-const button = document.querySelector(".primary-button");
 
-button.addEventListener("click", function(){
-  console.log("Botão clicado!")
-});
+function addItem(input, card) {
+
+    const item = input.value;
+
+    if (item.trim() !== "") {
+
+        const newItem = document.createElement("p");
+
+        newItem.classList.add("task-item");
+        newItem.textContent = item;
+
+        card.appendChild(newItem);
+
+        input.value = "";
+    }
+}

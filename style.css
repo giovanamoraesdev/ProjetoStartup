@@ -42,29 +42,23 @@ main{
 
 }
 
-
 /* ===== Buttons ===== */
 
-.primary-button{
-    text-align: center;
+.card-button {
     color: white;
     background-color: rgb(232, 115, 48);
-    margin: auto;
     font-size: medium;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 16px;
-    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.primary-button:hover{
+.card-button:hover {
     background-color: rgb(86, 36, 1);
-    cursor: pointer;
     box-shadow: 0px 4px 10px gray;
 }
-
 
 /* ===== Cards ===== */
 
@@ -76,21 +70,78 @@ main{
 
 }
 .card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   border-radius: 16px;  
   box-shadow: 0px 4px 10px gray; 
   padding: 18px;
   margin-top: 22px; 
 }
+.card-input {
+    width: 80%;
+    max-width: 350px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.card-input:focus {
+    outline: none;
+    border-color: rgb(232, 115, 48);
+}
+
+/* ===== Task Card ===== */
 
 .task-item{
     background-color: #dfd9e2;
     margin: 3px 0;
     padding: 5px 10px;
     border-radius: 10px;
+
+    background-color: #dfd9e2;
+    margin: 6px 0;
+    padding: 10px 14px;
+
+    border: 1px solid #c5bec9;
+    border-radius: 10px;
+
+    text-align: left;
 }
 
-.task-card{  
-  
+.task-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-card h3 {
+    margin-bottom: 10px;
+}
+
+.task-message {
+    margin: 5px 0 15px;
+    text-align: center;
+}
+
+.task-input {
+    width: 80%;
+    max-width: 350px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.task-input:focus {
+    outline: none;
+    border-color: rgb(232, 115, 48);
 }
 
 .habit-card{
@@ -126,3 +177,4 @@ footer{
     }
 
 }
+
