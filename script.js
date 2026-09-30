@@ -6,7 +6,18 @@ console.log("SCRIPT FUNCIONANDO");
 // ===== Dados =====
 
 const tasks = [];
-
+const savedTasks = localStorage.getItem("tasks");
+if(savedTasks !== null){
+    const recoveredTasks = JSON.parse(savedTasks);
+    tasks.push(...recoveredTasks);
+    const taskCard = document.querySelector(".task-card");
+    for(let i = 0; i < tasks.length; i++){
+        const newItem = document.createElement("p");
+        newItem.classList.add("task-item");
+        newItem.textContent = tasks[i].name;
+        taskCard.appendChild(newItem);
+    }
+}
 
 // ===== Elementos e eventos =====
 
@@ -16,6 +27,24 @@ for (let i = 0; i < cards.length; i++) {
 
     const button = cards[i].querySelector(".card-button");
     const input = cards[i].querySelector("input");
+    
+    if (cards[i].classList.contains("task-card")) {
+    console.log("É uma tarefa");
+} 
+    else if (cards[i].classList.contains("habit-card")) {
+    console.log("É um hábito");
+}
+
+    else if (cards[i].classList.contains("goal-card")) {
+    console.log("É um objetivo");
+}
+    else if (cards[i].classList.contains("calendar-card")) {
+    console.log("É um evento no calendário");
+}
+    else if (cards[i].classList.contains("note-card")) {
+    console.log("É uma nota");
+}  
+
 
     button.addEventListener("click", function () {
         addItem(input, cards[i]);
@@ -26,6 +55,13 @@ for (let i = 0; i < cards.length; i++) {
 // ===== Funções de tarefas =====
 
 function addItem(input, card) {
+     
+    if (card.classList.contains("task-card")) {
+    console.log("É uma tarefa");
+}
+    else if (card.classList.contains("habit-card")) {
+    console.log("É um hábito");
+}
 
     const item = input.value;
 
@@ -45,7 +81,7 @@ function addItem(input, card) {
 
         newItem.classList.add("task-item");
         newItem.textContent = task.name;
-
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         card.appendChild(newItem);
 
         input.value = "";
@@ -84,3 +120,6 @@ async function buscarTarefa() {
 // ===== Execução =====
 
 buscarTarefa();
+
+
+
