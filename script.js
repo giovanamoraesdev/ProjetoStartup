@@ -4,8 +4,13 @@ console.log("SCRIPT FUNCIONANDO");
 
 
 // ===== Dados =====
-
 const tasks = [];
+const habits = [];
+const goals = [];
+const events = [];
+const notes = [];
+
+// Tasks
 const savedTasks = localStorage.getItem("tasks");
 
 if(savedTasks !== null){
@@ -21,6 +26,94 @@ if(savedTasks !== null){
         newItem.classList.add("task-item");
         newItem.textContent = tasks[i].name;
         taskCard.appendChild(newItem);
+    }
+}
+
+// Habits
+const savedHabits = localStorage.getItem("habits");
+
+if (savedHabits !== null) {
+
+    const recoveredHabits = JSON.parse(savedHabits);
+
+    habits.push(...recoveredHabits);
+
+    const habitCard = document.querySelector(".habit-card");
+
+    for (let i = 0; i < habits.length; i++) {
+
+        const newItem = document.createElement("p");
+
+        newItem.classList.add("habit-item");
+        newItem.textContent = habits[i].name;
+
+        habitCard.appendChild(newItem);
+    }
+}
+
+// Goals
+const savedGoals = localStorage.getItem("goals");
+
+if (savedGoals !== null) {
+
+    const recoveredGoals = JSON.parse(savedGoals);
+
+    goals.push(...recoveredGoals);
+
+    const goalCard = document.querySelector(".goal-card");
+
+    for (let i = 0; i < goals.length; i++) {
+
+        const newItem = document.createElement("p");
+
+        newItem.classList.add("goal-item");
+        newItem.textContent = goals[i].name;
+
+        goalCard.appendChild(newItem);
+    }
+}
+
+// Calendars
+const savedEvents = localStorage.getItem("events");
+
+if (savedEvents !== null) {
+
+    const recoveredEvents = JSON.parse(savedEvents);
+
+    events.push(...recoveredEvents);
+
+    const calendarCard = document.querySelector(".calendar-card");
+
+    for (let i = 0; i < events.length; i++) {
+
+        const newItem = document.createElement("p");
+
+        newItem.classList.add("calendar-item");
+        newItem.textContent = events[i].name;
+
+        calendarCard.appendChild(newItem);
+    }
+}
+
+// Notes
+const savedNotes = localStorage.getItem("notes");
+
+if (savedNotes !== null) {
+
+    const recoveredNotes = JSON.parse(savedNotes);
+
+    notes.push(...recoveredNotes);
+
+    const noteCard = document.querySelector(".note-card");
+
+    for (let i = 0; i < notes.length; i++) {
+
+        const newItem = document.createElement("p");
+
+        newItem.classList.add("note-item");
+        newItem.textContent = notes[i].content;
+
+        noteCard.appendChild(newItem);
     }
 }
 
@@ -58,6 +151,7 @@ for (let i = 0; i < cards.length; i++) {
 
 
 // ===== Funções de tarefas =====
+
 function addItem(input, card) {
 
     const item = input.value;
