@@ -11,22 +11,66 @@ const events = [];
 const notes = [];
 
 // Tasks
+// Tasks
 const savedTasks = localStorage.getItem("tasks");
 
-if(savedTasks !== null){
+if (savedTasks !== null) {
+
     const recoveredTasks = JSON.parse(savedTasks);
 
     tasks.push(...recoveredTasks);
 
     const taskCard = document.querySelector(".task-card");
 
-    for(let i = 0; i < tasks.length; i++){
+    for (let i = 0; i < tasks.length; i++) {
+
+        // Cria um ID para tarefas antigas que ainda não possuem
+        if (tasks[i].id === undefined) {
+            tasks[i].id = Date.now() + i;
+        }
+
+        const itemContainer = document.createElement("div");
+
+        itemContainer.classList.add("task-item-container");
+
+        itemContainer.dataset.id = tasks[i].id;
+
         const newItem = document.createElement("p");
 
         newItem.classList.add("task-item");
         newItem.textContent = tasks[i].name;
-        taskCard.appendChild(newItem);
+
+        const deleteButton = document.createElement("button");
+
+        deleteButton.textContent = "Excluir";
+
+        deleteButton.addEventListener("click", function() {
+
+            const idClicado = parseInt(itemContainer.dataset.id);
+
+            for (let i = 0; i < tasks.length; i++) {
+
+                if (tasks[i].id === idClicado) {
+
+                    tasks.splice(i, 1);
+
+                    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+                    itemContainer.remove();
+
+                    break;
+                }
+            }
+        });
+
+        itemContainer.appendChild(newItem);
+        itemContainer.appendChild(deleteButton);
+
+        taskCard.appendChild(itemContainer);
     }
+
+    // Salva os IDs criados para tarefas antigas
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // Habits
@@ -164,6 +208,7 @@ function addItem(input, card) {
             console.log("É uma tarefa");
 
             const task = {
+                id: Date.now(),
                 name: item,
                 completed: false,
                 urgency: "alta",
@@ -173,14 +218,44 @@ function addItem(input, card) {
 
             tasks.push(task);
 
+            const itemContainer = document.createElement("div");
+            itemContainer.classList.add("task-item-container");
+
+            itemContainer.dataset.id = task.id;
+
             const newItem = document.createElement("p");
 
             newItem.classList.add("task-item");
             newItem.textContent = task.name;
 
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Excluir";
+            deleteButton.addEventListener("click",function(){
+                const idClicado = parseInt(itemContainer.dataset.id);
+
+                for(let i = 0; i < tasks.length; i++){
+
+                    if (tasks[i].id === idClicado){
+
+                        tasks.splice(i,1);
+
+                        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+                        itemContainer.remove();
+
+                        break;
+
+                    }
+                }
+            });
+
+            itemContainer.appendChild(newItem);
+            itemContainer.appendChild(deleteButton);
+
             localStorage.setItem("tasks", JSON.stringify(tasks));
 
-            card.appendChild(newItem);
+            card.appendChild(itemContainer);
         }
 
         // HÁBITO
