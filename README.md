@@ -18,4 +18,6 @@ Criar uma aplicação web enquanto aprendo programação do zero.
 
 ## Desenvolvedora
 
+projeto retomado em Novembro de 2026
+
 Giovana Moraes
